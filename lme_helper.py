@@ -235,7 +235,14 @@ def export_table(o):
             write_cell(o, attrs, left_align, feature.page, feature.name)
 
             for chip in chips:
-                status = Status.get(chip=chip, feature=feature)
+                try:
+                    status = Status.get(chip=chip, feature=feature)
+                except DoesNotExist:
+                    status = Status(
+                        chip=chip,
+                        feature=feature,
+                        support=SupportLevel.UNKNOWN
+                    )
                 if status.support == SupportLevel.UNAVAILABLE:
                     style = {}
                     text = 'N/A'
