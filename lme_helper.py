@@ -219,6 +219,7 @@ def export_table(o):
 
     chips = tuple(Chip.select().order_by(Chip.order))
     write_heading(o, chips)
+    o.write('\n')
 
     left_align = {'text-align': 'left'}
     for category in Category.select().order_by(Category.name.collate('NOCASE')):
