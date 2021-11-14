@@ -126,6 +126,7 @@ def parse_status_cell(cell):
         support = SupportLevel.UNSUPPORTED
     elif text == 'WIP' and bg == 'orange':
         support = SupportLevel.WIP
+        version = text
     elif bg == 'darkgreen':
         support = SupportLevel.COMPATIBLE
         version = text
@@ -257,10 +258,10 @@ def export_table(o):
                     text = 'NO'
                 elif status.support == SupportLevel.WIP:
                     style = {'background': 'orange'}
-                    text = 'WIP'
+                    text = status.version or 'WIP'
                 elif status.support == SupportLevel.COMPATIBLE:
                     style = {'background': 'darkgreen', 'color': 'white'}
-                    text = status.version
+                    text = status.version or '?'
                 elif status.support == SupportLevel.SUPPORTED:
                     style = {'background': 'lightgreen'}
                     text = status.version
