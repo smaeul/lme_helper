@@ -118,13 +118,13 @@ def parse_status_cell(cell):
         bg = None
     if text == 'N/A' and bg is None:
         support = SupportLevel.UNAVAILABLE
-    elif text == '?' and bg == 'grey':
+    elif bg == 'grey':
         support = SupportLevel.UNKNOWN
-    elif text == 'NO' and bg == 'black':
+    elif bg == 'black':
         support = SupportLevel.UNPLANNED
-    elif text == 'NO' and bg == 'red':
+    elif bg == 'red':
         support = SupportLevel.UNSUPPORTED
-    elif text == 'WIP' and bg == 'orange':
+    elif bg == 'orange':
         support = SupportLevel.WIP
         version = text
     elif bg == 'darkgreen':
